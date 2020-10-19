@@ -29,7 +29,7 @@ public class Infanteria extends Unidad{
     @Override
     public void atacar( Unidad objetivo) {
         if (this.alcance(objetivo)){
-            int daño = getAtaque() + getAtaque()*100/getVida();
+            int daño = getAtaque() + (getAtaque()*getVida)/100;
             objetivo.recibirDaño(daño);
         }
     }
