@@ -16,7 +16,7 @@ public class Main {
         Mapa mapa = new Mapa(nodos);
         Infanteria inf1 = new Infanteria(mapa.getNodo(1,0));
         Infanteria inf2 = new Infanteria(mapa.getNodo(3,0));
-        //System.out.println("Inf1 :"+ inf1.getMyID());
+        //System.out.println(var);
         //System.out.println("Inf2 :"+ inf2.getMyID());
         //inf1.atacar(inf2);
         //System.out.println("\nInf2 :"+ inf2.getVida());
@@ -30,8 +30,9 @@ public class Main {
             }
             System.out.print("\n");
         }
-        //inf1.mover(mapa.getNodo(0,0));
-        inf2.mover(mapa.getNodo(0,3));
+        inf1.mover(mapa.getNodo(3,1));
+        //inf2.mover(mapa.getNodo(3,3));
+        //System.out.println(inf2.getPosicion().getPosX() + " " + inf2.getPosicion().getPosY());
         System.out.println("U________________________________________U");
         for(int x=0; x<4; x++){
             for(int y =0; y<4; y++){

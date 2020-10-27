@@ -11,6 +11,7 @@ public abstract class Edificio {
     private NodoMapa posocion;
     private Jugador dueño;
     private int myID;
+    private int impuesto;
 
     public abstract void reparar();
     public abstract void recibirDaño(int daño, Jugador jugador);
@@ -36,7 +37,6 @@ public abstract class Edificio {
         this.posocion = posocion;
     }
 
-
     public Jugador getDueño() {
         return dueño;
     }
@@ -52,5 +52,13 @@ public abstract class Edificio {
 
     public void setMyID(int myID) {
         this.myID = myID;
+    }
+
+    public int getImpuesto() {
+        return impuesto;
+    }
+
+    public void setImpuesto(int impuesto) {
+        this.impuesto = impuesto;
     }
 }

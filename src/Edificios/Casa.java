@@ -9,14 +9,19 @@ public class Casa extends Edificio {
     public Casa(NodoMapa posicion){
         setMyID(generarID());
         setPosocion(posicion);
+        posicion.setContenido(this);
         setVida(0);
+        setImpuesto(200);
     }
 
     public Casa(NodoMapa posicion, Jugador jugador){
         setMyID(generarID());
         setPosocion(posicion);
+        getPosocion().setContenido(this);
         setDueño(jugador);
+        getDueño().añadirEdificio(this);
         setVida(100);
+        setImpuesto(200);
     }
 
     @Override
@@ -28,7 +33,13 @@ public class Casa extends Edificio {
     @Override
     public void recibirDaño(int daño, Jugador jugador) {
         setVida(getVida()-daño);
-        if (getVida()<=0) setVida(daño);
-        setDueño(jugador);
+        if (getVida()<=0) {
+            setVida(daño);
+            if (getDueño()!=null){
+                getDueño().quitarEdificio(this);
+            }
+            setDueño(jugador);
+            getDueño().añadirEdificio(this);
+        }
     }
 }

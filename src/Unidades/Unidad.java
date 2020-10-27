@@ -13,6 +13,8 @@ public abstract class Unidad {
     private int vida, ataque, defensa, velocidad, alcance;
     private Jugador dueño;
     private int myID;
+    private boolean haMovido;
+    private boolean vuela;
 
     public abstract void atacar(Unidad objetivo);
     public abstract void recibirDaño(int daño);
@@ -78,4 +80,20 @@ public abstract class Unidad {
     public int getMyID() { return myID; }
 
     public void setMyID(int myID) { this.myID = myID; }
+
+    public boolean getHaMovido() {
+        return haMovido;
+    }
+
+    public void setHaMovido(boolean haMovido) {
+        this.haMovido = haMovido;
+    }
+
+    public boolean getVuela() {
+        return vuela;
+    }
+
+    public void setVuela(boolean vuela) {
+        this.vuela = vuela;
+    }
 }

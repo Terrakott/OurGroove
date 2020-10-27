@@ -22,6 +22,8 @@ public class Infanteria extends Unidad{
         setAtaque(20);
         setDefensa(0);
         setVelocidad(5);
+        setHaMovido(false);
+        setVuela(false);
 
     }
 
@@ -35,7 +37,9 @@ public class Infanteria extends Unidad{
         setVida(100);
         setAtaque(20);
         setDefensa(0);
-        setVelocidad(5);
+        setVelocidad(4);
+        setHaMovido(false);
+        setVuela(false);
 
     }
 
@@ -58,8 +62,13 @@ public class Infanteria extends Unidad{
     @Override
     public void mover(NodoMapa posicion) {
         Stack<NodoMapa> camino = new Stack<NodoMapa>();
-        System.out.println(getPosicion().getMapa().encontarCamino(getVelocidad(), getPosicion(), posicion, camino));
-        if(getPosicion().getMapa().encontarCamino(getVelocidad(), getPosicion(), posicion, camino))setPosicion(posicion);
+        //System.out.println(getPosicion().getMapa().encontarCamino(getVelocidad(), getPosicion(), posicion, camino));
+        if(getPosicion().getMapa().encontarCamino(getVelocidad(), getPosicion(), posicion, camino) && !getHaMovido()){
+            getPosicion().setContenido(null);
+            setPosicion(posicion);
+            getPosicion().setContenido(this);
+            setHaMovido(true);
+        }
     }
 
     @Override
@@ -77,13 +86,14 @@ public class Infanteria extends Unidad{
     @Override
     public boolean alcance(Unidad objetivo) {
         //System.out.print("Por aquí llego");
-        return abs(getPosicion().getPosX()-objetivo.getPosicion().getPosX()) <= getAlcance() &&
+        return !objetivo.getVuela() && abs(getPosicion().getPosX()-objetivo.getPosicion().getPosX()) <= getAlcance() &&
                 abs(getPosicion().getPosY()-objetivo.getPosicion().getPosY()) <= getAlcance();
     }
 
     @Override
     public void morir() {
         getPosicion().setContenido(null);
+        getDueño().quitarUnidad(this);
         //quitar de la lista de unidades del jugador y de la celda
     }
 

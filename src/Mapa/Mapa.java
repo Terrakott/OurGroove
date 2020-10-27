@@ -22,28 +22,25 @@ public class Mapa {
 
     public boolean encontarCamino(int distancia, NodoMapa origen, NodoMapa destino, Stack<NodoMapa> camino){
         boolean resultado = (origen == destino);
-        System.out.println(origen.getPosX() + " " + origen.getPosY() + " resultado: " + resultado);
-        if( distancia >= 0 && ((!camino.isEmpty() && origen.getContenido() == null) || camino.isEmpty())){
+        System.out.println(origen.getPosX() + " " + origen.getPosY());
+        if(origen.getContenido()==null || camino.isEmpty()){
             camino.push(origen);
-            System.out.println("lo mete");
-        }
-        if(!resultado && (!camino.isEmpty() && origen.getContenido() != null)){
-            if(origen.getPosY()>destino.getPosY()){
-                resultado = encontarCamino(distancia-origen.getDificultad(),nodos[origen.getPosX()][origen.getPosY()-1], destino, camino);
+            if(distancia>=0){
+                int y = origen.getPosY()-1;
+                if(y>=0) resultado = resultado || encontarCamino(distancia-origen.getDificultad(),nodos[origen.getPosX()][y], destino, camino);
                 if(!resultado) camino.pop();
-            }else if(!resultado){
-                resultado = encontarCamino(distancia-origen.getDificultad(),nodos[origen.getPosX()][origen.getPosY()+1], destino, camino);
+                y = origen.getPosY()+1;
+                if(y<nodos[0].length) resultado = resultado || encontarCamino(distancia-origen.getDificultad(),nodos[origen.getPosX()][y], destino, camino);
                 if(!resultado) camino.pop();
-            }
-            if(origen.getPosX()>destino.getPosX() && !resultado){
-                resultado = resultado || encontarCamino(distancia-origen.getDificultad(),nodos[origen.getPosX()-1][origen.getPosY()], destino, camino);
+                int x = origen.getPosX()-1;
+                if(x>=0) resultado = resultado || encontarCamino(distancia-origen.getDificultad(),nodos[x][origen.getPosY()], destino, camino);
                 if(!resultado) camino.pop();
-            }else if(!resultado){
-                resultado = resultado || encontarCamino(distancia-origen.getDificultad(),nodos[origen.getPosX()+1][origen.getPosY()], destino, camino);;
+                x = origen.getPosX()+1;
+                if(x<nodos.length)resultado = resultado || encontarCamino(distancia-origen.getDificultad(),nodos[x][origen.getPosY()], destino, camino);
                 if(!resultado) camino.pop();
             }
         }
-
+        System.out.print(" resultado: " + resultado + "\n");
         return resultado;
     }
 
