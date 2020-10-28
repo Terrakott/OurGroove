@@ -74,4 +74,9 @@ public class Jugador implements IJugador{
     public void setPartida(Partida partida) {
         this.partida = partida;
     }
+
+    public void transaccion(int c){
+        if(getOro()+c > 0)
+            this.oro = this.oro + c;
+    }
 }

@@ -73,7 +73,11 @@ public class Infanteria extends Unidad{
 
     @Override
     public void reforzar(Casa casa) {
-
+        if(getDueño().getOro()>300){
+            getDueño().transaccion(-300);
+            setVida(getVida()+casa.getVida()/2);
+            if(getVida()>100)setVida(100);
+        }
     }
 
     @Override

@@ -73,7 +73,11 @@ public class Partida {
         return jugadores.size() == 1;
     }
 
-    public Jugador getJugador(int i){
-        return  jugadores.get(i);
+    public Jugador getJugadorActivo(){
+        return  jugadores.get(turno%jugadores.size());
+    }
+
+    public Mapa getMapa(){
+        return mapa;
     }
 }
