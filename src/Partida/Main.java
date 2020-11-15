@@ -1,4 +1,4 @@
-package Partida;
+/*package Partida;
 
 import Unidades.Infanteria;
 import Unidades.Unidad;
