@@ -2,26 +2,31 @@ package Edificios;
 
 import Jugador.Jugador;
 import Mapa.NodoMapa;
+import Unidades.Infanteria;
 
+public class Cuartel extends Edificio {
 
-public class Casa extends Edificio {
-
-    public Casa(NodoMapa posicion){
+    public Cuartel(NodoMapa posicion){
         setMyID(generarID());
         setPosocion(posicion);
         posicion.setContenido(this);
         setVida(0);
-        setImpuesto(200);
+        setImpuesto(0);
     }
 
-    public Casa(NodoMapa posicion, Jugador jugador){
+    public Cuartel(NodoMapa posicion, Jugador jugador){
         setMyID(generarID());
         setPosocion(posicion);
         getPosocion().setContenido(this);
         setDueño(jugador);
         getDueño().añadirEdificio(this);
         setVida(100);
-        setImpuesto(200);
+        setImpuesto(0);
+    }
+
+    public void reclutar(NodoMapa posicion, int tipoUnidad){
+        if(tipoUnidad == 0) new Infanteria(posicion,getDueño());
+
     }
 
     @Override
