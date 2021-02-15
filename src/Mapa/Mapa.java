@@ -20,32 +20,30 @@ public class Mapa {
         }
     }
 
-    public boolean encontarCamino(int distancia, NodoMapa origen, NodoMapa destino, Stack<NodoMapa> camino){
-        boolean resultado = (origen == destino);
-        System.out.println(origen.getPosX() + " " + origen.getPosY() + " resultado: " + resultado);
-        if( distancia >= 0 && ((!camino.isEmpty() && origen.getContenido() == null) || camino.isEmpty())){
-            camino.push(origen);
-            System.out.println("lo mete");
-        }
-        if(!resultado && (!camino.isEmpty() && origen.getContenido() != null)){
-            if(origen.getPosY()>destino.getPosY()){
-                resultado = encontarCamino(distancia-origen.getDificultad(),nodos[origen.getPosX()][origen.getPosY()-1], destino, camino);
-                if(!resultado) camino.pop();
-            }else if(!resultado){
-                resultado = encontarCamino(distancia-origen.getDificultad(),nodos[origen.getPosX()][origen.getPosY()+1], destino, camino);
-                if(!resultado) camino.pop();
-            }
-            if(origen.getPosX()>destino.getPosX() && !resultado){
-                resultado = resultado || encontarCamino(distancia-origen.getDificultad(),nodos[origen.getPosX()-1][origen.getPosY()], destino, camino);
-                if(!resultado) camino.pop();
-            }else if(!resultado){
-                resultado = resultado || encontarCamino(distancia-origen.getDificultad(),nodos[origen.getPosX()+1][origen.getPosY()], destino, camino);;
-                if(!resultado) camino.pop();
-            }
-        }
+    public Stack encontrarCamino(NodoMapa posicionActual,NodoMapa posicionObjetivo,int movimientos){
+        Stack solucion = new Stack();
+        if(posicionActual.getPosX()==posicionObjetivo.getPosX() && posicionActual.getPosY() == posicionObjetivo.getPosY()){
+            solucion.push(posicionActual);
+            return solucion;
 
-        return resultado;
+        }
+        else return encontrarCaminoAux(posicionActual,posicionObjetivo,movimientos,solucion);
+
     }
+    public Stack encontrarCaminoAux(NodoMapa posicionActual,NodoMapa posicionObjetivo,int Movimientos,Stack camino){
+        if(posicionActual.getPosX()==posicionObjetivo.getPosX() && posicionActual.getPosY() == posicionObjetivo.getPosY()){//Caso base 1:Hemos llegado a la casilla objetivo
+            camino.push(posicionActual);
+            return camino;
+        }
+        if (Movimientos==0){ //Caso base 2: No quedan movimientos por tanto no llega
+            return camino;
+        }
+        if ((posicionActual.getPosX()+1<nodos.length) && Movimientos - this.getNodo(posicionActual.getPosX()+1,posicionActual.getPosY()).getDificultad() > 0 ) //Preguntamos si se puede subir
+        encontrarCaminoAux(this.getNodo(posicionActual.getPosX()+1,posicionActual.getPosY()))
+
+
+    }
+
 
     public NodoMapa getNodo(int x, int y){
         return nodos[x][y];
