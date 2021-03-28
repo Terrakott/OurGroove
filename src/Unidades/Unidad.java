@@ -1,20 +1,23 @@
 package Unidades;
 
+import ControladorPack.GameObject;
+import ControladorPack.ID;
 import Edificios.Casa;
 import Edificios.Edificio;
 import Jugador.Jugador;
-import Mapa.NodoMapa;
+import MapaPack.NodoMapa;
 
-public abstract class Unidad {
-
-    private static int ID = 0;
+public abstract class Unidad extends GameObject {
 
     private NodoMapa posicion;
     private int vida, ataque, defensa, velocidad, alcance;
     private Jugador dueño;
-    private int myID;
     private boolean haMovido;
     private boolean vuela;
+
+    public Unidad(NodoMapa posicion, ID id) {
+        super(posicion.getPosX(), posicion.getPosY(), id);
+    }
 
     public abstract void atacar(Unidad objetivo);
     public abstract void recibirDaño(int daño);
@@ -23,19 +26,6 @@ public abstract class Unidad {
     public abstract void conquistar(Edificio edificio);
     public abstract boolean alcance(Unidad objetivo);
     public abstract void morir();
-
-    public int generarID(){
-        this.ID ++;
-        return this.ID;
-    }
-
-    public NodoMapa getPosicion() {
-        return posicion;
-    }
-
-    public void setPosicion(NodoMapa posicion) {
-        this.posicion = posicion;
-    }
 
     public int getVida() {
         return vida;
@@ -77,10 +67,6 @@ public abstract class Unidad {
 
     public void setDueño(Jugador dueño) { this.dueño = dueño; }
 
-    public int getMyID() { return myID; }
-
-    public void setMyID(int myID) { this.myID = myID; }
-
     public boolean getHaMovido() {
         return haMovido;
     }
@@ -95,5 +81,13 @@ public abstract class Unidad {
 
     public void setVuela(boolean vuela) {
         this.vuela = vuela;
+    }
+
+    public NodoMapa getPosicion() {
+        return this.posicion;
+    }
+
+    public void setPosicion( NodoMapa posicion) {
+        this.posicion = posicion;
     }
 }

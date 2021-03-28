@@ -1,23 +1,26 @@
 package Edificios;
 
+import ControladorPack.ID;
 import Jugador.Jugador;
-import Mapa.NodoMapa;
+import MapaPack.NodoMapa;
 import Unidades.Infanteria;
+
+import java.awt.*;
 
 public class Cuartel extends Edificio {
 
     public Cuartel(NodoMapa posicion){
-        setMyID(generarID());
-        setPosocion(posicion);
+        super(posicion, ID.CUARTEL);
+        setPosicion(posicion);
         posicion.setContenido(this);
         setVida(0);
         setImpuesto(0);
     }
 
     public Cuartel(NodoMapa posicion, Jugador jugador){
-        setMyID(generarID());
-        setPosocion(posicion);
-        getPosocion().setContenido(this);
+        super(posicion,ID.CUARTEL);
+        setPosicion(posicion);
+        getPosicion().setContenido(this);
         setDueño(jugador);
         getDueño().añadirEdificio(this);
         setVida(100);
@@ -46,5 +49,15 @@ public class Cuartel extends Edificio {
             setDueño(jugador);
             getDueño().añadirEdificio(this);
         }
+    }
+
+    @Override
+    public void tick() {
+
+    }
+
+    @Override
+    public void render(Graphics g) {
+
     }
 }

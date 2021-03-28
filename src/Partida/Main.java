@@ -1,9 +1,6 @@
-/*package Partida;
+package Partida;
 
-import Unidades.Infanteria;
-import Unidades.Unidad;
-
-import java.util.*;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String args[]){
@@ -34,22 +31,13 @@ public class Main {
             for(int x=0; x<5; x++){
                 for(int y =0; y<5; y++){
                     if(x==w)nodos[x+2][y] = 1;
-                    else nodos[x+2][y] = 0;
+                    else nodos[x][y] = 0;
                 }
             }
             edificios[w] = edis;
         }
 
         Partida game = new Partida(3, nodos, unidades, edificios);
-        for(int x =0; x<5; x++){
-            for(int y =0; y<5; y++){
-                if(game.getMapa().getNodo(x,y).getContenido() == null){
-                    System.out.println("Llanura ,");
-                }else if(game.getMapa().getNodo(x,y).getContenido().getClass() == ){
-
-                }
-            }
-        }
         while (!salir){
             System.out.print("Elige la X: ");
             String strX= sc.nextLine();

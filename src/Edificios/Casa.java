@@ -1,23 +1,26 @@
 package Edificios;
 
+import ControladorPack.ID;
 import Jugador.Jugador;
-import Mapa.NodoMapa;
+import MapaPack.NodoMapa;
+
+import java.awt.*;
 
 
 public class Casa extends Edificio {
 
     public Casa(NodoMapa posicion){
-        setMyID(generarID());
-        setPosocion(posicion);
+        super(posicion, ID.CASA);
+        setPosicion(posicion);
         posicion.setContenido(this);
         setVida(0);
         setImpuesto(200);
     }
 
     public Casa(NodoMapa posicion, Jugador jugador){
-        setMyID(generarID());
-        setPosocion(posicion);
-        getPosocion().setContenido(this);
+        super(posicion, ID.CASA);
+        setPosicion(posicion);
+        getPosicion().setContenido(this);
         setDueño(jugador);
         getDueño().añadirEdificio(this);
         setVida(100);
@@ -41,5 +44,22 @@ public class Casa extends Edificio {
             setDueño(jugador);
             getDueño().añadirEdificio(this);
         }
+    }
+
+    @Override
+    public void tick() {
+
+    }
+
+    @Override
+    public void render(Graphics g) {
+        if(getDueño() == null){
+            g.setColor(Color.GRAY);
+        }else if(getDueño().getID() == 0){
+            g.setColor(Color.RED);
+        }else if(getDueño().getID() == 1) {
+            g.setColor(Color.BLUE);
+        }
+        g.drawString("Casa", (getPosicion().getPosX())*32, (getPosicion().getPosY()+1)*32);
     }
 }

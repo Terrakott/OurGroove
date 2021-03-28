@@ -1,21 +1,23 @@
 package Ventanas;
 
 import javax.swing.*;
+import java.awt.*;
 
-public class Window extends  JFrame {
+public class Window extends Canvas {
 
-    public Window(){
-        setTitle("OurGroove");
-        //setSize(WIDTH,HEIGHT);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setExtendedState(MAXIMIZED_BOTH);
-        //setUndecorated(true);
-        setResizable(false);
-        setLocationRelativeTo(null);
-        setVisible(true);
+    public Window(int width, int height, String title, Partida.Juego game){
+        JFrame frame = new JFrame(title);
+        frame.setPreferredSize(new Dimension(width, height));
+        frame.setMinimumSize(new Dimension(width, height));
+        frame.setMaximumSize(new Dimension(width, height));
+
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        frame.setLocationRelativeTo(null);
+        frame.add(game);
+        frame.setVisible(true);
+        game.start();
     }
-    public static void main(String[] args) {
-        new Window();
-    }
+
 
 }

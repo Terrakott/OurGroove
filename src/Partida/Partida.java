@@ -2,7 +2,7 @@ package Partida;
 
 import Edificios.Casa;
 import Jugador.Jugador;
-import Mapa.Mapa;
+import MapaPack.Mapa;
 import Unidades.Infanteria;
 import Unidades.Unidad;
 
@@ -36,17 +36,18 @@ public class Partida {
         }
         //se almacenan arrays con la informacion de las posiciones y tipos de edificios para cada jugador, y al final otro con los
         //edificios que no tienen dueño. Si valor = 0 (No hay edificio), si valor = 1 (Es una casa)
-        for(int j = 0; j<=esquemaedificios.length;j++){
-            for(int x = 0; x<= esquemaedificios.length; x++){
-                for(int y = 0; y <= esquemaedificios[x].length; y++){
+        for(int j = 0; j<esquemaedificios.length;j++){
+            for(int x = 0; x< esquemaedificios[j].length; x++){
+                for(int y = 0; y < esquemaedificios[j][x].length; y++){
                     if(esquemaedificios[j][x][y] == 1){
                         Casa casa;
-                        if(j == esquemaedificios.length){
+                        if(j == esquemaedificios.length-1){
                             casa = new Casa(mapa.getNodo(x,y));
                         }else{
                             casa = new Casa(mapa.getNodo(x,y), jugadores.get(j));
+                            jugadores.get(j).añadirEdificio(casa);
                         }
-                        jugadores.get(j).añadirEdificio(casa);
+
                     }
                 }
             }

@@ -1,18 +1,20 @@
 package Unidades;
 
+import ControladorPack.ID;
 import Edificios.Casa;
 import Edificios.Edificio;
 import Jugador.Jugador;
-import Mapa.NodoMapa;
+import MapaPack.NodoMapa;
 
+import java.awt.*;
 import java.util.Stack;
 
-import static java.lang.Math.*;
+import static java.lang.Math.abs;
 
 public class Infanteria extends Unidad{
 
     public Infanteria(NodoMapa posicion){
-        setMyID(super.generarID());
+        super(posicion, ID.INFANTERIA);
         //setDueño(dueño);
         setPosicion(posicion);
         posicion.setContenido(this);
@@ -28,7 +30,7 @@ public class Infanteria extends Unidad{
     }
 
     public Infanteria(NodoMapa posicion, Jugador dueño){
-        setMyID(super.generarID());
+        super(posicion, ID.INFANTERIA);
         setDueño(dueño);
         setPosicion(posicion);
         posicion.setContenido(this);
@@ -63,12 +65,12 @@ public class Infanteria extends Unidad{
     public void mover(NodoMapa posicion) {
         Stack<NodoMapa> camino = new Stack<NodoMapa>();
         //System.out.println(getPosicion().getMapa().encontarCamino(getVelocidad(), getPosicion(), posicion, camino));
-        if(getPosicion().getMapa().encontarCamino(getVelocidad(), getPosicion(), posicion, camino) && !getHaMovido()){
+        /*if(getPosicion().getMapa().encontarCamino(getVelocidad(), getPosicion(), posicion, camino) && !getHaMovido()){
             getPosicion().setContenido(null);
             setPosicion(posicion);
             getPosicion().setContenido(this);
             setHaMovido(true);
-        }
+        }*/
     }
 
     @Override
@@ -101,4 +103,21 @@ public class Infanteria extends Unidad{
         //quitar de la lista de unidades del jugador y de la celda
     }
 
+    @Override
+    public void tick() {
+
+    }
+
+    @Override
+    public void render(Graphics g) {
+        if(getDueño() == null){
+            g.setColor(Color.GRAY);
+        }else if(getDueño().getID() == 0){
+            g.setColor(Color.RED);
+        }else if(getDueño().getID() == 1) {
+            g.setColor(Color.BLUE);
+        }
+        g.drawString("Inf", getPosicion().getPosX()*32, (getPosicion().getPosY()+1)*32);
+
+    }
 }

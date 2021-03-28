@@ -1,7 +1,7 @@
-package Mapa;
+package MapaPack;
 
 
-import java.util.Stack;
+import ControladorPack.ID;
 
 public class Mapa {
 
@@ -15,19 +15,19 @@ public class Mapa {
     private void generarNodos(int[][] setTipoNodos){
         for (int x = 0; x<setTipoNodos.length; x++){
             for (int y = 0; y<setTipoNodos[0].length; y++){
-                this.nodos[x][y] = new NodoMapa(setTipoNodos[x][y], this, x, y);
+                this.nodos[x][y] = new NodoMapa(ID.LLANURA, this, x, y);
             }
         }
     }
 
-    public Stack encontrarCamino(NodoMapa posicionActual,NodoMapa posicionObjetivo,int movimientos){
+    /*public Stack encontrarCamino(NodoMapa posicionActual,NodoMapa posicionObjetivo,int movimientos){
         Stack solucion = new Stack();
         if(posicionActual.getPosX()==posicionObjetivo.getPosX() && posicionActual.getPosY() == posicionObjetivo.getPosY()){
             solucion.push(posicionActual);
             return solucion;
 
         }
-        else return encontrarCaminoAux(posicionActual,posicionObjetivo,movimientos,solucion);
+        //else return encontrarCaminoAux(posicionActual,posicionObjetivo,movimientos,solucion);
 
     }
     public Stack encontrarCaminoAux(NodoMapa posicionActual,NodoMapa posicionObjetivo,int Movimientos,Stack camino){
@@ -43,10 +43,13 @@ public class Mapa {
 
 
     }
-
+*/
 
     public NodoMapa getNodo(int x, int y){
         return nodos[x][y];
     }
 
+    public NodoMapa[][] getNodos() {
+        return this.nodos;
+    }
 }
