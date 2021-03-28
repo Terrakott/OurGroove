@@ -38,10 +38,10 @@ public class Mapa {
         if (Movimientos==0){ //Caso base 2: No quedan movimientos por tanto no llega
             return camino;
         }
-        if ((posicionActual.getPosX()+1<nodos.length) && Movimientos - this.getNodo(posicionActual.getPosX()+1,posicionActual.getPosY()).getDificultad() > 0 ) //Preguntamos si se puede subir
-        encontrarCaminoAux(this.getNodo(posicionActual.getPosX()+1,posicionActual.getPosY()))
+     /*   if ((posicionActual.getPosX()+1<nodos.length) && Movimientos - this.getNodo(posicionActual.getPosX()+1,posicionActual.getPosY()).getDificultad() > 0 ) //Preguntamos si se puede subir
+        encontrarCaminoAux(this.getNodo(posicionActual.getPosX()+1,posicionActual.getPosY()));
 
-
+*/
     }
 
 
