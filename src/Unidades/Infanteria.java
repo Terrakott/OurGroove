@@ -10,7 +10,7 @@ import java.util.Stack;
 import static java.lang.Math.*;
 
 public class Infanteria extends Unidad{
-
+//iovrbhafdcbjkefiuvb
     public Infanteria(NodoMapa posicion){
         setMyID(super.generarID());
         //setDueño(dueño);
