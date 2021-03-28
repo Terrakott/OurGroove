@@ -7,6 +7,7 @@ public class Window extends  JFrame {
     public Window(){
         setTitle("OurGroove");
         //setSize(WIDTH,HEIGHT);
+        //UNA PERRA SORPRENDENTE,CURVILINEA Y ELOCUENTE
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setExtendedState(MAXIMIZED_BOTH);
         //setUndecorated(true);
